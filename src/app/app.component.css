@@ -1,0 +1,132 @@
+.text-box{
+    width: 15rem;
+    height: 15rem;
+    position: relative;
+    padding: 1rem;
+    box-shadow: 0px 10px 24px 0px rgba(0,0,0,0.50);
+  }
+  .text-box span{
+    font-size: 1.4em;
+  }
+  .input{
+    position: absolute;
+    inset: 0;
+    resize: none;
+    outline: none;
+    padding: 1rem;
+    font-size: 1.3em;
+    font-weight: 700;
+    border: none;
+  }
+  .text{
+    background-color: rgba(0,0,0,0.2);
+  }
+  .text, textarea:disabled{
+    color: #000;
+    font-size: 1.6em;
+    font-family: cursive;
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
+    border: none;
+    outline: none;
+    resize: none;
+  }
+  textarea:disabled{
+    background-color: transparent;
+  }
+  .label{
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    font-weight: 700;
+    background-color: #fff;
+    display: none;
+  }
+  .add{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+  .layout{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    position: relative;
+  }
+  .cursive span{
+    font-family: cursive!important;
+    font-size: 1.4em;
+    overflow-wrap: break-word;
+  }
+  .concluido{
+    text-decoration: line-through;
+  }
+  .buttons-wrap{
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: rgb(26, 24, 24);
+    opacity: 0;
+    transition: 0.3s;
+  }
+  .buttons-wrap button, .concluir{
+    padding: 0.3rem 0.5rem;
+    font-size: 1.3em;
+    background-color: rgb(26, 24, 24);
+    border: none;
+    cursor: pointer;
+  }
+  .buttons-wrap button:hover{
+    background-color: #3a3a3a;
+    transform: scale(0.85);
+  }
+  .buttons-wrap button:first-child{
+    color: green;
+  }
+  .buttons-wrap button:nth-child(2){
+    color: blue;
+  }
+  .buttons-wrap button:last-child{
+    color: red;
+  }
+  .text-box:hover .buttons-wrap{
+    opacity: 1;
+  }
+  .concluir{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    color: green;
+    font-weight: 700;
+    font-size: 1em;
+  }
+
+  @media (max-width: 1150px){
+    .text-box{
+      width: 13rem;
+      height: 13rem;
+    }
+    .text-box span{
+      font-size: 1.2em;
+    }
+    .text, textarea:disabled{
+      font-size: 1.4em;
+    }
+  }
+
+  @media (max-width: 920px){
+    .text-box{
+      width: 10rem;
+      height: 10rem;
+    }
+    .text-box span{
+      font-size: 1em;
+    }
+    .text, textarea:disabled{
+      font-size: 1.2em;
+    }
+  }
