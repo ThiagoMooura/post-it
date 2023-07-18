@@ -1,17 +1,28 @@
 <div class="layout">
-  <div class="text-box">
-  <textarea [(ngModel)]="text" (keyup.enter)="add()" maxlength="100" placeholder="Digite aqui" class="input"></textarea>
+  <div class="text-box light">
+  <textarea *ngIf="!mover" [(ngModel)]="text" (keyup.enter)="add()" maxlength="100" placeholder="Digite aqui" class="input"></textarea>
 </div>
 
 <div *ngFor="let post of array">
-  <div [style.background]="post.cor" [style.transform]="post.posicao" class="text-box cursive">
-    <div *ngIf="!post.editavel" class="buttons-wrap">
-      <button *ngIf="!post.concluido" (click)="concluir(post.id)"><i class="fa-solid fa-check"></i></button>
-      <button *ngIf="!post.concluido" (click)="editar(post.id)"><i class="fa-solid fa-pen"></i></button>
-      <button (click)="delete(post.id)"><i class="fa-solid fa-xmark"></i></button>
+  <div [style.background]="post.cor" [style.transform]="post.posicao" class="text-box cursive" [ngClass]="{'z-index': post.alterarCor}">
+    <div *ngIf="mover" class="mover" (click)="moverItem(post.id)"><i class="fa-solid fa-arrows-up-down-left-right"></i></div>
+    <div *ngIf="!post.editavel && !mover" class="buttons-wrap">
+      <button *ngIf="!post.concluido && !post.alterarCor" (click)="concluir(post.id)"><i class="fa-solid fa-check"></i></button>
+      <button *ngIf="!post.concluido && !post.alterarCor" (click)="editar(post.id)"><i class="fa-solid fa-pen"></i></button>
+      <button *ngIf="!post.alterarCor" (click)="delete(post.id)"><i class="fa-solid fa-xmark"></i></button>
+      <button *ngIf="post.concluido && !post.alterarCor" (click)="desfazer(post.id)"><i class="fa-solid fa-rotate-right"></i></button>
+      <button *ngIf="!post.alterarCor" (click)="setAlterarCor(post.id)"><i class="fa-solid fa-palette"></i></button>
+      <button *ngIf="!post.alterarCor" (click)="toggleMover();getMoverData(post.id, post)"><i class="fa-solid fa-arrows-up-down-left-right"></i></button>
     </div>
     <button (click)="mudaTexto(post.id)" *ngIf="post.editavel" class="concluir">concluir</button>
     <textarea (input)="novoTexto($event.target)" class="text" [ngClass]="{'concluido': post.concluido}" value="{{post.texto}}" [disabled]="!post.editavel"></textarea>
+    <div *ngIf="post.alterarCor" class="cores">
+      <button (click)="alteraCor(post.id, '#FFFF00')" *ngIf="post.cor !== '#FFFF00'" class="cor amarelo"></button>
+      <button (click)="alteraCor(post.id, '#7BED7B')" *ngIf="post.cor !== '#7BED7B'" class="cor verde"></button>
+      <button (click)="alteraCor(post.id, '#FFA500')" *ngIf="post.cor !== '#FFA500'" class="cor laranja"></button>
+      <button (click)="alteraCor(post.id, '#40E0D0')" *ngIf="post.cor !== '#40E0D0'" class="cor azul"></button>
+      <button (click)="alteraCor(post.id, '#BC83E6')" *ngIf="post.cor !== '#BC83E6'" class="cor roxo"></button>
+    </div>
   </div>
 </div>
 </div>
